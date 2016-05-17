@@ -1,6 +1,3 @@
-// GIS Projekt.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include "Edge.h"
 
@@ -9,7 +6,7 @@ using namespace std;
 int main()
 {
 	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\file.txt");
-	//ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\edges.csv");
+	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
 
 
 	/////////////////////////////////////////
@@ -31,7 +28,7 @@ int main()
 		vertices.push_back(stoi(element));
 	}
 
-	//Load data from file and save it to matrix
+	//Load data from file and save it to vector of edges
 	while (!ifile.eof())
 	{
 		int node1, node2;
@@ -61,8 +58,16 @@ int main()
 		cout << edges[i].node1 << " " << edges[i].node2 << " " << edges[i].weight << endl;
 	}
 
+	//Save edges to file
+	for (int i = 0; i < edges.size(); i++)
+	{
+		ofile << edges[i].node1 + 1 << ";";
+		ofile << edges[i].node2 + 1 << ";";
+		ofile << edges[i].weight << endl;
+	}
 
-	string c;
-	cin >> c;
+	ofile.close();
+
+	system("pause");
     return 0;
 }
