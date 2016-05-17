@@ -5,13 +5,35 @@ using namespace std;
 
 int main()
 {
-	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\file.txt");
-	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
+	ifstream ifile;
+	ofstream ofile;
+	string filename;
+
+	cout << "Podaj œcie¿kê do pliku wejœciowego: ";
+	cin >> filename;
+
+	ifile.open(filename);
+
+	if (!ifile.good())
+	{
+		cout << "Nie uda³o siê otworzyæ pliku wejœciowego." << endl;
+		system("pause");
+		return 0;
+	}
+
+	cout << "Podaj œcie¿kê do pliku wyjœciowego: ";
+	cin >> filename;
+
+	ofile.open(filename);
+
+	if (!ofile.good())
+	{
+		cout << "Nie uda³o siê utworzyæ pliku wyjœciowego." << endl;
+		system("pause");
+		return 0;
+	}
 
 
-	/////////////////////////////////////////
-	//            READING DATA             //
-	/////////////////////////////////////////
 
 
 	vector<Edge> edges;
@@ -53,16 +75,14 @@ int main()
 
 	ifile.close();
 
-	for (int i = 0; i < edges.size(); i++)
-	{
-		cout << edges[i].node1 << " " << edges[i].node2 << " " << edges[i].weight << endl;
-	}
+
+
 
 	//Save edges to file
 	for (int i = 0; i < edges.size(); i++)
 	{
-		ofile << edges[i].node1 + 1 << ";";
-		ofile << edges[i].node2 + 1 << ";";
+		ofile << edges[i].node1 + 1 << " ";
+		ofile << edges[i].node2 + 1 << " ";
 		ofile << edges[i].weight << endl;
 	}
 
