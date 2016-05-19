@@ -7,6 +7,7 @@
 
 #include "targetver.h"
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>

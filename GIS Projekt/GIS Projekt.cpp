@@ -4,8 +4,8 @@
 
 int main()
 {
-	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\file.txt");
-	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
+	ifstream ifile("C:\\Users\\prudnik\\Desktop\\GIS\\file.txt");
+	ofstream ofile("C:\\Users\\prudnik\\Desktop\\GIS\\result.txt");
 	
 	//string filename;
 
@@ -35,10 +35,10 @@ int main()
 
 
 
-
+	vector<int> chosenVertices;
 	vector<Edge> edges;
 	vector<int> vertices;
-	
+
 	string line;
 	getline(ifile, line, '\n');
 
@@ -74,13 +74,13 @@ int main()
 			return 0;
 		}
 
-		vertices.push_back(vertex);
+		chosenVertices.push_back(vertex);
 	}
 
 	//Load data from file and save it to vector of edges
 	while (!ifile.eof())
 	{
-		int node1, node2;
+		int vertex1, vertex2;
 		double weight;
 
 		getline(ifile, line, '\n');
@@ -95,7 +95,7 @@ int main()
 		
 		try
 		{
-			node1 = stoi(row[0]);
+			vertex1 = stoi(row[0]);
 		}
 		catch (exception)
 		{
@@ -106,7 +106,7 @@ int main()
 
 		try
 		{
-			node2 = stoi(row[1]);
+			vertex2 = stoi(row[1]);
 		}
 		catch (exception)
 		{
@@ -133,7 +133,10 @@ int main()
 			return 0;
 		}
 		
-		edges.push_back(Edge(node1, node2, weight));
+		vertices.push_back(vertex1);
+		vertices.push_back(vertex2);
+
+		edges.push_back(Edge(vertex1, vertex2, weight));
 	}
 
 	ifile.close();
@@ -145,15 +148,42 @@ int main()
 		return 0;
 	}
 
+	//Find unique vertices
+	sort(vertices.begin(), vertices.end());
+	vertices.erase(unique(vertices.begin(), vertices.end()), vertices.end());
+	
 
 
 
-	//Save edges to file
+	if (chosenVertices.size() > vertices.size())
+	{
+		cout << PL("B£¥D: Zbiór wybranych wierzcho³ków jest wiêkszy od zbioru wierzcho³ków grafu.") << endl;
+		system("pause");
+		return 0;
+	}
+
+	if (chosenVertices.size() == 2)
+	{
+		//Find shortest path
+	}
+	if (chosenVertices.size() == vertices.size())
+	{
+		//Find MST
+	}
+	else
+	{
+		//Find MST for subset of vertices
+	}
+
+
+
+	//Save result to file
 	for (int i = 0; i < edges.size(); i++)
 	{
-		ofile << edges[i].node1 + 1 << " ";
-		ofile << edges[i].node2 + 1 << " ";
-		ofile << edges[i].weight << endl;
+		//ofile << edges[i].vertex1 + 1 << " ";
+		//ofile << edges[i].vertex2 + 1 << " ";
+		//ofile << edges[i].weight << endl;
+		ofile << vertices[i] << endl;
 	}
 
 	ofile.close();
