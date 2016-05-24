@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "Edge.h"
 #include "PolishLetters.h"
+#include "PrimAlgorithm.h"
 
 int main()
 {
-	ifstream ifile("C:\\Users\\prudnik\\Desktop\\GIS\\file.txt");
-	ofstream ofile("C:\\Users\\prudnik\\Desktop\\GIS\\result.txt");
+	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\file.txt");
+	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
 	
 	//string filename;
 
@@ -14,24 +15,24 @@ int main()
 
 	//ifile.open(filename);
 
-	//if (!ifile.good())
-	//{
-	//	cout << PL("B£¥D: Nie uda³o siê otworzyæ pliku wejœciowego.") << endl;
-	//	system("pause");
-	//	return 0;
-	//}
+	if (!ifile.good())
+	{
+		cout << PL("B£¥D: Nie uda³o siê otworzyæ pliku wejœciowego.") << endl;
+		system("pause");
+		return 0;
+	}
 
 	//cout << PL("Podaj œcie¿kê do pliku wyjœciowego: ");
 	//cin >> filename;
 
 	//ofile.open(filename);
 
-	//if (!ofile.good())
-	//{
-	//	cout << PL("B£¥D: Nie uda³o siê utworzyæ pliku wyjœciowego.") << endl;
-	//	system("pause");
-	//	return 0;
-	//}
+	if (!ofile.good())
+	{
+		cout << PL("B£¥D: Nie uda³o siê utworzyæ pliku wyjœciowego.") << endl;
+		system("pause");
+		return 0;
+	}
 
 
 
@@ -169,6 +170,8 @@ int main()
 	if (chosenVertices.size() == vertices.size())
 	{
 		//Find MST
+		PrimAlgorithm prim;
+		edges = prim.GetMST(edges); // podmieniamy nasze krawedzie
 	}
 	else
 	{
@@ -180,10 +183,10 @@ int main()
 	//Save result to file
 	for (int i = 0; i < edges.size(); i++)
 	{
-		//ofile << edges[i].vertex1 + 1 << " ";
-		//ofile << edges[i].vertex2 + 1 << " ";
-		//ofile << edges[i].weight << endl;
-		ofile << vertices[i] << endl;
+		ofile << edges[i].vertex1 << " ";
+		ofile << edges[i].vertex2 << " ";
+		ofile << edges[i].weight << endl;
+		//ofile << vertices[i] << endl;
 	}
 
 	ofile.close();
