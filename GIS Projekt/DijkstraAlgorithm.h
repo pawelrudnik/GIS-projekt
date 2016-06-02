@@ -11,7 +11,6 @@ class DijkstraAlgorithm
 	vector<int> prev;
 	vector<int> Q;
 	vector<Edge> graph;
-	vector<Edge> chosenEdges;
 
 public:
 	DijkstraAlgorithm();

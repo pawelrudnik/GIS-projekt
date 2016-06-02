@@ -13,12 +13,12 @@ DijkstraAlgorithm::~DijkstraAlgorithm()
 
 vector<Edge> DijkstraAlgorithm::GetShortestPath(vector<int> vertices, vector<Edge> edges, int start, int end)
 {
+	graph = edges;
+	Q = vertices;
+
 	N = vertices.size();
 	dist.resize(N, INF);
 	prev.resize(N, -1);
-
-	graph = edges;
-	Q = vertices;
 
 	dist[start] = 0;
 
@@ -63,6 +63,7 @@ vector<Edge> DijkstraAlgorithm::GetShortestPath(vector<int> vertices, vector<Edg
 
 	u = end;
 
+	vector<Edge> chosenEdges;
 	while (prev[u] >= 0) //Go from end to start
 	{
 		chosenEdges.push_back(GetEdge(u, prev[u])); //Add edges on the path

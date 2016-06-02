@@ -3,10 +3,11 @@
 #include "PolishLetters.h"
 #include "DijkstraAlgorithm.h"
 #include "PrimAlgorithm.h"
+#include "FinalAlgorithm.h"
 
 int main()
 {
-	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\file.txt");
+	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\test_prim_100.txt");
 	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
 	
 	//string filename;
@@ -86,6 +87,8 @@ int main()
 		double weight;
 
 		getline(ifile, line, '\n');
+
+		if (line == "") break;
 
 		istringstream iss(line);
 		vector<string> row;
@@ -188,6 +191,22 @@ int main()
 	else
 	{
 		//Find MST for subset of vertices
+		vector<pair<int, bool>> verticesflags;
+		for (int i = 0; i < vertices.size(); i++)
+		{
+
+			int pos = find(chosenVertices.begin(), chosenVertices.end(), vertices[i]) - chosenVertices.begin();
+			if (pos >= chosenVertices.size())
+			{//nie ma takiego
+				verticesflags.push_back(make_pair(vertices[i], false));
+			}
+			else
+			{
+				verticesflags.push_back(make_pair(vertices[i], true));
+			}
+		}
+		FinalAlgorithm finalal;
+		edges = finalal.GetFinalMST(edges, verticesflags);
 	}
 	
 	//Liczymy czas jaki up³yna³ od pocz¹tku obliczeñ

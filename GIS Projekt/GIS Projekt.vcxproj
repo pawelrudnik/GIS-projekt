@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="DijkstraAlgorithm.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="FinalAlgorithm.h" />
     <ClInclude Include="PolishLetters.h" />
     <ClInclude Include="PrimAlgorithm.h" />
     <ClInclude Include="stdafx.h" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DijkstraAlgorithm.cpp" />
+    <ClCompile Include="FinalAlgorithm.cpp" />
     <ClCompile Include="GIS Projekt.cpp" />
     <ClCompile Include="PrimAlgorithm.cpp" />
     <ClCompile Include="stdafx.cpp">
