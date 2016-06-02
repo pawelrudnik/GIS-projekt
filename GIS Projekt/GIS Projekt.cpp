@@ -95,6 +95,13 @@ int main()
 			row.push_back(element);
 		}
 		
+		if (row.size() < 3)
+		{
+			cout << PL("B£¥D: Zbyt ma³a iloœæ elementów w wierszu.") << endl;
+			system("pause");
+			return 0;
+		}
+
 		try
 		{
 			vertex1 = stoi(row[0]);
@@ -154,9 +161,6 @@ int main()
 	sort(vertices.begin(), vertices.end());
 	vertices.erase(unique(vertices.begin(), vertices.end()), vertices.end());
 	
-
-
-
 	if (chosenVertices.size() > vertices.size())
 	{
 		cout << PL("B£¥D: Zbiór wybranych wierzcho³ków jest wiêkszy od zbioru wierzcho³ków grafu.") << endl;
@@ -164,7 +168,9 @@ int main()
 		return 0;
 	}
 
-	//Odliczamy czas
+
+
+	//Zaczynamy odliczaæ czas
 	clock_t tStart = clock();
 
 	if (chosenVertices.size() == 2)
@@ -183,9 +189,8 @@ int main()
 	{
 		//Find MST for subset of vertices
 	}
-
-
-
+	
+	//Liczymy czas jaki up³yna³ od pocz¹tku obliczeñ
 	double time_elapsed = (double)(clock() - tStart) / CLOCKS_PER_SEC;
 	cout << PL("Znaleziono rozwi¹zanie w czasie: ") << time_elapsed << "s" << endl;
 
