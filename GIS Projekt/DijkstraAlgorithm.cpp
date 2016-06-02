@@ -28,7 +28,7 @@ vector<Edge> DijkstraAlgorithm::GetShortestPath(vector<int> vertices, vector<Edg
 	vector<Edge> possibleEdges;
 	while (!Q.empty())
 	{
-		//Find vertex with shortest distance
+		//Znajd¿ wierzcho³ek o najmniejszej odleg³oœci
 		int min = Q[0];
 		for (int i = 1; i < Q.size(); i++)
 		{
@@ -36,27 +36,27 @@ vector<Edge> DijkstraAlgorithm::GetShortestPath(vector<int> vertices, vector<Edg
 				min = Q[i];
 		}
 
-		u = min; //Set u as a vertex with smallest distance
+		u = min; //Ustaw u jako wierzcho³ek o najmniejszej odleg³oœci
 
-		if (u == end) break; //If it is our target vertex then break
+		if (u == end) break; //Jeœli u jest naszym koñcem œcie¿ki to zakoñcz
 
-		Q.erase(remove(Q.begin(), Q.end(), u), Q.end()); //Delete vertex u from Q
+		Q.erase(remove(Q.begin(), Q.end(), u), Q.end()); //Usuñ wierzcho³ek u ze zbioru Q
 
-		possibleEdges = GetPossibleEdges(u); //Find adjacent edges to  vertex u
+		possibleEdges = GetPossibleEdges(u); //ZnajdŸ krawêdzie wychodz¹ce z wierzcho³ka u
 
-		for(Edge edge : possibleEdges)
+		for(Edge edge : possibleEdges) //Dla ka¿ej s¹siedniej krawêdzi
 		{
-			alt = dist[u] + edge.weight; //Calculate distance to adjacent vertex
+			alt = dist[u] + edge.weight; //Wylicz odleg³oœæ do wierzcho³ka po³¹czonego t¹ krawêdzi¹
 
-			if (edge.vertex1 == u) //Get adjacent vertex from edge
+			if (edge.vertex1 == u) //Uzyskaj s¹siedni wierzcho³ek z tej krawêdzi
 				v = edge.vertex2;
 			else
 				v = edge.vertex1;
 
-			if (alt < dist[v]) //If shorter path to v was found
+			if (alt < dist[v]) //Jeœli znaleziono krótsz¹ œcie¿kê do v
 			{
-				dist[v] = alt;
-				prev[v] = u;
+				dist[v] = alt; //Podmiñ odleg³oœæ
+				prev[v] = u; //Dodaj poprzednika
 			}
 		}
 	}
@@ -64,9 +64,9 @@ vector<Edge> DijkstraAlgorithm::GetShortestPath(vector<int> vertices, vector<Edg
 	u = end;
 
 	vector<Edge> chosenEdges;
-	while (prev[u] >= 0) //Go from end to start
+	while (prev[u] >= 0) //Id¿ od konca do pocz¹tku œcie¿ki
 	{
-		chosenEdges.push_back(GetEdge(u, prev[u])); //Add edges on the path
+		chosenEdges.push_back(GetEdge(u, prev[u])); //Dodaj krawêdzie do œcie¿ki
 		u = prev[u];
 	}
 
@@ -97,5 +97,5 @@ Edge DijkstraAlgorithm::GetEdge(int u, int v)
 		}
 	}
 
-	return Edge(0, 0, 0); //In case of error
+	return Edge(0, 0, 0); //W przypadku b³êdu
 }

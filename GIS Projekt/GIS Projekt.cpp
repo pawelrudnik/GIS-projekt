@@ -7,15 +7,15 @@
 
 int main()
 {
-	ifstream ifile("C:\\Users\\Pawel\\Desktop\\GIS\\test_prim_100.txt");
-	ofstream ofile("C:\\Users\\Pawel\\Desktop\\GIS\\result.txt");
+	ifstream ifile;
+	ofstream ofile;
 	
-	//string filename;
+	string filename;
 
-	//cout << PL("Podaj œcie¿kê do pliku wejœciowego: ");
-	//cin >> filename;
+	cout << PL("Podaj œcie¿kê do pliku wejœciowego: ");
+	cin >> filename;
 
-	//ifile.open(filename);
+	ifile.open(filename);
 
 	if (!ifile.good())
 	{
@@ -24,10 +24,10 @@ int main()
 		return 0;
 	}
 
-	//cout << PL("Podaj œcie¿kê do pliku wyjœciowego: ");
-	//cin >> filename;
+	cout << PL("Podaj œcie¿kê do pliku wyjœciowego: ");
+	cin >> filename;
 
-	//ofile.open(filename);
+	ofile.open(filename);
 
 	if (!ofile.good())
 	{
@@ -80,7 +80,7 @@ int main()
 		chosenVertices.push_back(vertex);
 	}
 
-	//Load data from file and save it to vector of edges
+	//Wczytaj dane z pliku i zapisz je do wektora krawêdzi
 	while (!ifile.eof())
 	{
 		int vertex1, vertex2;
@@ -160,7 +160,7 @@ int main()
 		return 0;
 	}
 
-	//Find unique vertices
+	//ZnajdŸ unikalne wierzcho³ki
 	sort(vertices.begin(), vertices.end());
 	vertices.erase(unique(vertices.begin(), vertices.end()), vertices.end());
 	
@@ -178,19 +178,19 @@ int main()
 
 	if (chosenVertices.size() == 2)
 	{
-		//Find shortest path
+		//ZnajdŸ najkrótsz¹ œcie¿kê
 		DijkstraAlgorithm dijkstra;
 		edges = dijkstra.GetShortestPath(vertices, edges, chosenVertices[0], chosenVertices[1]);
 	}
 	else if (chosenVertices.size() == vertices.size())
 	{
-		//Find MST
+		//Znajd¿ MST
 		PrimAlgorithm prim;
-		edges = prim.GetMST(edges); // podmieniamy nasze krawedzie
+		edges = prim.GetMST(edges);
 	}
 	else
 	{
-		//Find MST for subset of vertices
+		//ZnajdŸ najkrótsz¹ sieæ po³¹czeñ
 		vector<pair<int, bool>> verticesflags;
 		for (int i = 0; i < vertices.size(); i++)
 		{
@@ -215,7 +215,7 @@ int main()
 
 
 
-	//Save result to file
+	//Zapisz wynik do pliku
 	for (int i = 0; i < edges.size(); i++)
 	{
 		ofile << edges[i].vertex1 << " ";

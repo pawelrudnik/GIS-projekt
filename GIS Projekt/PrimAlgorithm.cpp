@@ -22,11 +22,6 @@ vector<int> PrimAlgorithm::GetVerticesList(vector<Edge> inputGraph)
 	return vert;
 }
 
-//void PrimAlgorithm::DeleteElementFromList(vector<Edge> list, Edge element)
-//{
-//	list.erase(std::remove(list.begin(), list.end(), element), list.end());
-//}
-
 bool PrimAlgorithm::CheckIfGraphHasNoCycle(int newEdgeIndex)
 {
 	if (find(AddedVertices.begin(), AddedVertices.end(), PossibleEdges[newEdgeIndex].vertex1) == AddedVertices.end() || find(AddedVertices.begin(), AddedVertices.end(), PossibleEdges[newEdgeIndex].vertex2) == AddedVertices.end())
@@ -40,22 +35,15 @@ bool PrimAlgorithm::CheckIfGraphHasNoCycle(int newEdgeIndex)
 
 vector<Edge> PrimAlgorithm::GetPossibleEdges()
 {
-	vector<int> indexes;
 	for (int i = 0; i < Graph.size(); i++)
 	{
 		if (Graph[i].vertex1 == AddedVertices.back() || Graph[i].vertex2 == AddedVertices.back())
 		{
 			PossibleEdges.push_back(Graph[i]);
-			indexes.push_back(i);
 			Graph.erase(Graph.begin() + i);
 			i--;
 		}
 	}
-
-	/*for (int i = 0; i < indexes.size(); i++)
-	{
-		Graph.erase(Graph.begin() + indexes[i]);
-	}*/
 
 	return PossibleEdges;
 }
