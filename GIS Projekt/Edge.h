@@ -6,6 +6,11 @@ public:
 	int vertex2;
 	double weight;
 
+	bool operator==(const Edge& rhs)
+	{
+		return (vertex1 == rhs.vertex1 && vertex2 == rhs.vertex2 && weight == rhs.weight);
+	}
+
 	Edge() {}
 
 	Edge(int vertex1, int vertex2, double weight)
