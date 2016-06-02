@@ -141,6 +141,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DijkstraAlgorithm.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="PolishLetters.h" />
     <ClInclude Include="PrimAlgorithm.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DijkstraAlgorithm.cpp" />
     <ClCompile Include="GIS Projekt.cpp" />
     <ClCompile Include="PrimAlgorithm.cpp" />
     <ClCompile Include="stdafx.cpp">

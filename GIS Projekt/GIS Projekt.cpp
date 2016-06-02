@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Edge.h"
 #include "PolishLetters.h"
+#include "DijkstraAlgorithm.h"
 #include "PrimAlgorithm.h"
 
 int main()
@@ -166,8 +167,10 @@ int main()
 	if (chosenVertices.size() == 2)
 	{
 		//Find shortest path
+		DijkstraAlgorithm dijkstra;
+		edges = dijkstra.GetShortestPath(vertices, edges, chosenVertices[0], chosenVertices[1]);
 	}
-	if (chosenVertices.size() == vertices.size())
+	else if (chosenVertices.size() == vertices.size())
 	{
 		//Find MST
 		PrimAlgorithm prim;
