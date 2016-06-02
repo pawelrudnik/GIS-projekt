@@ -164,6 +164,9 @@ int main()
 		return 0;
 	}
 
+	//Odliczamy czas
+	clock_t tStart = clock();
+
 	if (chosenVertices.size() == 2)
 	{
 		//Find shortest path
@@ -183,13 +186,17 @@ int main()
 
 
 
+	double time_elapsed = (double)(clock() - tStart) / CLOCKS_PER_SEC;
+	cout << PL("Znaleziono rozwi¹zanie w czasie: ") << time_elapsed << "s" << endl;
+
+
+
 	//Save result to file
 	for (int i = 0; i < edges.size(); i++)
 	{
 		ofile << edges[i].vertex1 << " ";
 		ofile << edges[i].vertex2 << " ";
 		ofile << edges[i].weight << endl;
-		//ofile << vertices[i] << endl;
 	}
 
 	ofile.close();
